@@ -25,7 +25,7 @@ body {
   transition: 0.4s ease-out;
 }
 
-.weather-warn {
+.weather-warm {
   background-image: url(./assets/warm-bg.jpg);
   background-size: cover;
   background-position: bottom;

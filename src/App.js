@@ -20,74 +20,52 @@ function App() {
     }
   };
 
-  const dateBuilder = (d) => {
-    let months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    let days = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
-
-    let day = days[d.getDay()];
-    let date = d.getDate();
-    let month = months[d.getMonth()];
-    let year = d.getFullYear();
-
-    return `${day} ${date} ${month} ${year}`;
+  const getFormattedDate = (d) => {
+    const options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    const formattedDate = new Date().toLocaleDateString("en-US", options);
+    return formattedDate;
   };
 
-const changeBackground = () => {
-  if (weather.main) {
-    return (weather.main.temp > 20) ? "weather-warm" : "weather-cold";
-  }
-  return ""
-}
+  const changeBackground = () => {
+    if (weather.main) {
+      return weather.main.temp > 20 ? "weather-warm" : "weather-cold";
+    }
+    return "";
+  };
 
   return (
     <div className={changeBackground()}>
-        <main>
-          <div className="search-box">
-            <input
-              type="text"
-              className="search-bar"
-              placeholder="Search..."
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              onKeyDown={search}
-            ></input>
-          </div>
-          {weather.main && (
-            <div className="info-box">
-              <div className="location-box">
-                <div className="location">
-                  {weather.name}, {weather.sys?.country}
-                </div>
-                <div className="date">{dateBuilder(new Date())}</div>
+      <main>
+        <div className="search-box">
+          <input
+            type="text"
+            className="search-bar"
+            placeholder="Search..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={search}
+          ></input>
+        </div>
+        {weather.main && (
+          <div className="info-box">
+            <div className="location-box">
+              <div className="location">
+                {weather.name}, {weather.sys?.country}
               </div>
-              <div className="weather-box">
-                <div className="temp">{Math.round(weather.main.temp)}°C</div>
-                <div className="weather">{weather.weather[0].main}</div>
-              </div>
+              <div className="date">{getFormattedDate()}</div>
             </div>
-          )}
-        </main>
+            <div className="weather-box">
+              <div className="temp">{Math.round(weather.main.temp)}°C</div>
+              <div className="weather">{weather.weather[0].main}</div>
+            </div>
+          </div>
+        )}
+      </main>
     </div>
   );
 }

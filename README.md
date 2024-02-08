@@ -1,0 +1,2 @@
+# Weather app
+This is a weather app that utilizes the OpenWeatherMap API. It allows users to search by city name and retrieve the current temperature and weather information. Additionally, it dynamically changes the background based on the current temperature.
