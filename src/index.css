@@ -18,18 +18,18 @@ body {
   font-family: "montseratt", sans-serif;
 }
 
-.app {
+.weather-cold {
   background-image: url(./assets/cold-bg.jpg);
   background-size: cover;
   background-position: bottom;
-  transition: 0.4 ease-out;
+  transition: 0.4s ease-out;
 }
 
-.app.warn {
+.weather-warn {
   background-image: url(./assets/warm-bg.jpg);
   background-size: cover;
   background-position: bottom;
-  transition: 0.4 ease-out;
+  transition: 0.4s ease-out;
 }
 
 .search-box {
